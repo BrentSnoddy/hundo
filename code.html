@@ -2,7 +2,7 @@
 <html lang="en" class="h-100">
 
 <head>
-    <title>App Name: A Coding Project by Brent Snoddy</title>
+    <title>Hundo: A Coding Project by Brent Snoddy</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -15,13 +15,16 @@
     <link href="css/site.css" rel="stylesheet">
     <link href="css/prism.css" rel="stylesheet">
     <link rel="icon" type="image/png" href="img/favicon-32x32.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Racing+Sans+One&display=swap" rel="stylesheet">
 
 </head>
 <body class="d-flex flex-column h-100">
     <!--===NAV SECTION===-->
 <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-lite">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#"><img src="/img/Color logo - no background.svg" class="d-inline-block align-text-top" alt="logo" width="30" height="26">  App Name</a>
+        <a class="navbar-brand logoFont" href="#"><img src="/img/Color logo - no background.svg" class="d-inline-block align-text-top" alt="logo" width="30" height="26">  Hundo</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
             aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -50,21 +53,101 @@
 <!--===MAIN SECTION===-->
 <main class="flex-shrink-0">
     <div class="container py-5 px-5 mt-5">
-        <h2 class="border-3 border-bottom border-dark">The Code for: APP NAME</h2>
+        <h2 class="border-3 border-bottom border-dark">The Code for: HUNDO</h2>
         <div class="row row-cols-1 row-cols-lg-2">
             <div class="col-lg-8">
                 <pre class="line-numbers"><code class="language-javascript">
-                    //Call Hello World
-                    function HelloWorld(){
-                        alert("Hello World");
+                    //starts or controller function
+                    //get values from input
+                    function getValues(){
+                        //get values from the page
+                        let startValue = document.getElementById("startValue").value;
+                        let endValue = document.getElementById("endValue").value;
+
+
+                        //we need validate values
+                        // parse into integers
+                        startValue = parseInt(startValue);
+                        endValue = parseInt(endValue);
+
+                        if(Number.isInteger(startValue) && Number.isInteger(endValue)) {
+                            //we call generateNumbers function
+                            let numbers = generateNumbers(startValue, endValue);
+                            //we call displayNumbers function
+                            displayNumbers(numbers);
+                        } 
+                        else{
+                            alert("Error! you must enter integers")
+                        }
+
+                        
+                        
+                    }
+                    //logic function(s)
+                    //generate numbers from start value til the end value
+                    function generateNumbers(sValue, eValue){
+                        let numbers = [];
+
+                        //get all numbers from start to end
+                        for(let index = sValue; index <= eValue; index++){
+
+                            //this will execute in a loop til index = eValue
+                            numbers.push(index);
+                        }
+
+                        return numbers;
+
+                    }
+                    //display or view function
+                    //display numbers, even numbers in bold font
+                    function displayNumbers(numbers){
+
+                        let templateRows = "";
+                        for (let index = 0; index < numbers.length; index++){
+
+                            let className = "even"
+                            let number = numbers[index];
+                            if (number % 2 == 0){
+                                className= "even";
+
+                            } else{
+                                className= "odd";
+
+                            }
+                            //this does not render correctly with PrismJS. See the source code in Github for full details.//
+                            templateRows += `<tr><td class="${className}">${number}</td></tr>`;
+                        }
+                        document.getElementById("results").innerHTML = templateRows;
+
                     }
                  </code>
                 </pre>
             </div>
             <div class="col-lg-4">
-                    <p>The Code is structured in 1 function. </p>
-                    <h5>Hello World</h5>
-                    <p>Hello World that displays an alert with a message of "Hello World"</p>
+                    
+                    <h5>Hundo Code</h5>
+                    <p>Hundo is an app that takes 2 numbers from a user (startingValue and Ending Value) 
+                        and displays the numbers from the starting number to the ending number. 
+                        the odd numbers are displayed in a green color and the even numbers are displayed in a purple color. 
+                        <strong>for example:</strong> a starting number of 1 and an ending number of 5 would display: 1, 2, 3, 4, 5, 
+                        with the numbers 2 and the 4 in purple and the numbers 1,3,5 in green. Note: the number 0 is considered an even number in this app.</p>
+                    <p>The Code is structured in 3 functions: </p>
+                    <ol>
+                        <li><strong>The getValues function:</strong>The getValues function takes the input from a user of 2 numbers and first parses 
+                            the input thereby converting the input from a string to a number. it then checks the
+                            input to see if the inout given is an integer. If it is an integer it moves on to the next function
+                            otherwise it will give an alert erro message for the user to enter an integer.</li>
+                        <li><strong> generateNumbers function: 
+                        </strong>The generateValues function starts off with a for loop with the starting of the loop being
+                        the startingValue variable given by the user and interates a counting sequence till it reaches the endingValue number.it then
+                        pushes these values into an array to be used by the next function.</li>
+                        <li><strong>The displayNumbers function:</strong>The displayNumbers function takes the array created in the last function and
+                        checks to see if the result is divisible by 2 . if it is it will assign the result the class of "Even" thus making it purple. if it s not 
+                        devisable by 2 it will assign it a class of "Odd" and will make the result a green color in the table. it finally pushes the answer to the table on the 
+                        page. </li>
+                    </ol>
+
+                    
             </div>
         </div>
     </div>

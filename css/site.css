@@ -1,3 +1,9 @@
+/* RACING STYLE FONT FROM GOOGLE FONTS*/
+/*font-family: 'Racing Sans One', cursive;*/
+
+
+
+
 :root{
         --primary-color: #1d5888;
         --secondary-color: #ff993b;
@@ -5,6 +11,17 @@
         --white-color: #e7e7e7;
 
 
+}
+
+.odd{
+    color:#4F2683;
+    font-size: large;
+
+}
+
+.even{
+    font-size: large;
+    color:#69BE28;
 }
 
 body{
@@ -74,3 +91,7 @@ code[class*='language-'],
                 word-break: break-all;
                 word-wrap: break-word;
             }
+
+.logoFont {
+    font-family: 'Racing Sans One', cursive;
+}
